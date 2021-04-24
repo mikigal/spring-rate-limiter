@@ -1,0 +1,49 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'pl.mikigal'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+
+publishing {
+    repositories {
+        maven {
+            name = "repo.mikigal.pl"
+            url = uri("https://repo.mikigal.pl/releases")
+            credentials {
+                username = System.getenv("REPO_USERNAME")
+                password = System.getenv("REPO_TOKEN")
+            }
+        }
+    }
+    publications {
+        distribution(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.4.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.4.5'
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+test {
+    useJUnitPlatform()
+}
