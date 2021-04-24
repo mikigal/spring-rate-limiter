@@ -30,7 +30,7 @@ compile group: 'pl.mikigal', name: 'spring-rate-limiter', version: '1.0.0'
 
 ```java
 // Enable request limiter for application
-@EnableRequestLimiter
+@EnableRateLimiter
 @SpringBootApplication
 public class ExampleApplication {
 
